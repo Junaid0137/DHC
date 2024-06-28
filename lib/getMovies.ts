@@ -1,6 +1,6 @@
 import { SearchResults } from "@/typing";
-import { fetch, setGlobalDispatcher, Agent } from 'undici';
-setGlobalDispatcher(new Agent({ connect: { timeout: 60_000 } }))
+// import { fetch, setGlobalDispatcher, Agent } from 'undici';
+// setGlobalDispatcher(new Agent({ connect: { timeout: 60_000 } }))
 async function fetchFromTMDB(url: URL, cacheTime?: number) {
     url.searchParams.set("include_adult", "true");
     url.searchParams.set("language", "en-US");
