@@ -1,6 +1,6 @@
 import MoviesCarousal from "@/components/MoviesCarousal";
 import CarousalBannerWrapper from "@/components/CarousalBannerWrapper";
-import { getCompanies, getDiscoverTv, getNowPlaying, getPopularMovies, getTopRatedMovies, getTrendingMovie, getTrendingTv, getUpcommingMovies } from "@/lib/getMovies";
+import { getDiscoverTv, getNowPlaying, getPopularMovies, getTopRatedMovies, getTrendingMovie, getTrendingTv, getUpcommingMovies } from "@/lib/getMovies";
 
 export default async function Home() {
   const upcomingMovies = await getUpcommingMovies();
