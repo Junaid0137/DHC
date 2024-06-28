@@ -1,22 +1,6 @@
 import { SearchResults } from "@/typing";
-// import { fetch, setGlobalDispatcher, Agent } from 'undici';
-// setGlobalDispatcher(new Agent({ connect: { timeout: 60_000 } }))
-async function fetchCompany(url: URL, cacheTime?: number) {
-    const options: RequestInit = {
-        method: "GET",
-        headers: {
-            accept: "application/json",
-            Authorization: `Bearer ${process.env.Atoken}`,
-        },
-        next: {
-            revalidate: cacheTime || 60 * 60 * 24,
-        },
-    };
-    const res = await fetch(url.toString(), options);
-
-    const data = (await res.json()) as SearchResults;
-    return data;
-}
+import { fetch, setGlobalDispatcher, Agent } from 'undici';
+setGlobalDispatcher(new Agent({ connect: { timeout: 60_000 } }))
 async function fetchFromTMDB(url: URL, cacheTime?: number) {
     url.searchParams.set("include_adult", "true");
     url.searchParams.set("language", "en-US");
@@ -28,7 +12,8 @@ async function fetchFromTMDB(url: URL, cacheTime?: number) {
         method: "GET",
         headers: {
             accept: "application/json",
-            Authorization: `Bearer ${process.env.TMDB_API}`,
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZmJkNjcwZmU2MTU4MTNmYTZlMWJlNzE4ODllNjIzMSIsInN1YiI6IjY2NDc0ZjBkMTI1NDQ1M2QzZThiYmQ4OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.B9dKXw4mZ3fLX-f0uoSVde4wz0F3YSn_dJbAzJjnzss
+`,
         },
         next: {
             revalidate: cacheTime || 60 * 60 * 24,
@@ -39,12 +24,6 @@ async function fetchFromTMDB(url: URL, cacheTime?: number) {
     const data = (await res.json()) as SearchResults;
     return data;
 };
-
-export async function getCompanies() {
-    const url = new URL("http://20.244.56.144/test/companies/AMZ/categories/Laptop/products?top=10&minPrice=1&maxPrice=10000");
-    const data = await fetchCompany(url);
-    return data.results;
-}
 
 export async function getUpcommingMovies() {
     const url = new URL("https://api.themoviedb.org/3/movie/upcoming");
