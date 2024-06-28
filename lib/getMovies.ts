@@ -12,8 +12,7 @@ async function fetchFromTMDB(url: URL, cacheTime?: number) {
         method: "GET",
         headers: {
             accept: "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZmJkNjcwZmU2MTU4MTNmYTZlMWJlNzE4ODllNjIzMSIsInN1YiI6IjY2NDc0ZjBkMTI1NDQ1M2QzZThiYmQ4OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.B9dKXw4mZ3fLX-f0uoSVde4wz0F3YSn_dJbAzJjnzss
-`,
+            Authorization: `Bearer ${process.env.TMDB_API}`
         },
         next: {
             revalidate: cacheTime || 60 * 60 * 24,
