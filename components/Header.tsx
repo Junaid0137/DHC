@@ -20,7 +20,9 @@ function Header() {
             <div className='flex space-x-2'>
                 <GenerDropDown />
                 <SearchInput />
-                <ModeToggle />
+                <div className='hidden md:inline'>
+                    <ModeToggle />
+                </div>
             </div>
         </header>
     )
