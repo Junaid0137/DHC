@@ -11,7 +11,7 @@ Autoplay.globalOptions = {
     jumps: true,
 }
 function CarousalBanner({ movies }: { movies: Movie[] }) {
-    const [emblaRef] = useEmblaCarousel({ loop: true, duration: 25 }, [Autoplay()])
+    const [emblaRef] = useEmblaCarousel({ loop: true, duration: 50 }, [Autoplay()])
     return (
         <div ref={emblaRef} className='overflow-hidden lg-mt-40 relative cursor-pointer'>
             <div className='flex'>
